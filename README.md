@@ -1,4 +1,4 @@
-# sipps
+# SIPPS
 
 A new Flutter project.
 
