@@ -8,9 +8,11 @@ const authRouter = require("./routes/auth");
 // INIT
 const port = 3000;
 const app = express();
-const DB = "mongodb+srv://nasyih:nasyihulwannas1103@cluster0.itotmen.mongodb.net/?retryWrites=true&w=majority";
+const DB =
+  "mongodb+srv://nasyih:nasyihulwannas1103@cluster0.itotmen.mongodb.net/?retryWrites=true&w=majority";
 
 // MIDDLEWARE
+app.use(express.json());
 app.use(authRouter);
 
 // CONNECTIONS
@@ -23,6 +25,6 @@ mongoose
     console.log(e);
   });
 
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
   console.log("connected at port " + port);
 });
