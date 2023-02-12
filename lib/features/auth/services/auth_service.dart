@@ -7,14 +7,12 @@ import 'package:provider/provider.dart';
 import 'package:sipps/common/widgets/bottom_bar.dart';
 import 'package:sipps/constants/global_variables.dart';
 import 'package:sipps/constants/error_handling.dart';
-import 'package:sipps/features/auth/screens/auth_screen.dart';
 import 'package:sipps/models/user.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../constants/utils.dart';
 import '../../../providers/user_provider.dart';
-import '../../home/screens/home_screen.dart';
 
 class AuthService {
   // function for sign up user
