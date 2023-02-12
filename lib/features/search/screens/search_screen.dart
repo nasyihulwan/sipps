@@ -1,30 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:sipps/common/widgets/loader.dart';
 import 'package:sipps/constants/global_variables.dart';
 import 'package:sipps/features/home/widgets/address_box.dart';
-import 'package:sipps/features/home/widgets/carousel_image.dart';
-import 'package:sipps/features/home/widgets/deal_of_the_day.dart';
-import 'package:sipps/features/home/widgets/top_categories.dart';
-import 'package:sipps/features/search/screens/search_screen.dart';
+import 'package:sipps/features/product_details/screens/product_details_screen.dart';
+import 'package:sipps/features/search/services/search_service.dart';
+import 'package:sipps/features/search/widgets/searched_product.dart';
+import 'package:sipps/models/product.dart';
 
-import '../../../providers/user_provider.dart';
-
-class HomeScreen extends StatefulWidget {
-  static const String routeName = '/home';
-  const HomeScreen({super.key});
+class SearchScreen extends StatefulWidget {
+  static const String routeName = '/search-screen';
+  final String searchQuery;
+  const SearchScreen({
+    Key? key,
+    required this.searchQuery,
+  }) : super(key: key);
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _SearchScreenState extends State<SearchScreen> {
+  List<Product>? products;
+  final SearchServices searchServices = SearchServices();
+
+  @override
+  void initState() {
+    super.initState();
+    fetchSearchedProduct();
+  }
+
+  fetchSearchedProduct() async {
+    products = await searchServices.fetchSearchedProduct(
+        context: context, searchQuery: widget.searchQuery);
+    setState(() {});
+  }
+
   void navigateToSearchScreen(String query) {
     Navigator.pushNamed(context, SearchScreen.routeName, arguments: query);
   }
 
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<UserProvider>(context).user;
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60),
@@ -98,17 +114,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: const [
-            AddressBox(),
-            CarouselImage(),
-            SizedBox(height: 10),
-            TopCategories(),
-            DealOfDay(),
-          ],
-        ),
-      ),
+      body: products == null
+          ? const Loader()
+          : Column(
+              children: [
+                const AddressBox(),
+                const SizedBox(height: 10),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: products!.length,
+                    itemBuilder: (context, index) {
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                            context,
+                            ProductDetailScreen.routeName,
+                            arguments: products![index],
+                          );
+                        },
+                        child: SearchedProduct(
+                          product: products![index],
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
     );
   }
 }

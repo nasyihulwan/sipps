@@ -47,7 +47,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'Buku & Alat Tulis',
     'Fashion',
     'Perlengkapan Rumah',
-    'Lainnya'
+    'Tidak Dikategorikan'
   ];
 
   void sellProduct() {

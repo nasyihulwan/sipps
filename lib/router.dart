@@ -3,6 +3,10 @@ import 'package:sipps/common/widgets/bottom_bar.dart';
 import 'package:sipps/features/admin/screens/add_product_screen.dart';
 import 'package:sipps/features/admin/screens/admin_screen.dart';
 import 'package:sipps/features/auth/screens/auth_screen.dart';
+import 'package:sipps/features/home/screens/category_deals_screen.dart';
+import 'package:sipps/features/product_details/screens/product_details_screen.dart';
+import 'package:sipps/features/search/screens/search_screen.dart';
+import 'package:sipps/models/product.dart';
 
 import 'features/home/screens/home_screen.dart';
 
@@ -36,6 +40,33 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
       return MaterialPageRoute(
         settings: routeSettings,
         builder: (_) => const AddProductScreen(),
+      );
+
+    case SearchScreen.routeName:
+      var searchQuery = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => SearchScreen(
+          searchQuery: searchQuery,
+        ),
+      );
+
+    case CategoryDealsScreen.routeName:
+      var category = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => CategoryDealsScreen(
+          category: category,
+        ),
+      );
+
+    case ProductDetailScreen.routeName:
+      var product = routeSettings.arguments as Product;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => ProductDetailScreen(
+          product: product,
+        ),
       );
 
     default:

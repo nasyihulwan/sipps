@@ -58,8 +58,8 @@ class GlobalVariables {
       'image': 'assets/images/home-repair.png',
     },
     {
-      'title': 'Semua Kategori',
-      'image': 'assets/images/menu.png',
+      'title': 'Tidak Dikategorikan',
+      'image': 'assets/images/categories.png',
     },
   ];
 }
