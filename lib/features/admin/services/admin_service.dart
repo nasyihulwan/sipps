@@ -3,10 +3,14 @@ import 'dart:io';
 
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sipps/common/widgets/loader.dart';
 import 'package:sipps/constants/error_handling.dart';
 import 'package:sipps/constants/global_variables.dart';
 import 'package:sipps/constants/utils.dart';
+import 'package:sipps/features/admin/screens/admin_screen.dart';
+import 'package:sipps/features/admin/screens/products_screen.dart';
 import 'package:sipps/models/product.dart';
 import 'package:http/http.dart' as http;
 import 'package:sipps/providers/user_provider.dart';
@@ -20,6 +24,7 @@ class AdminServices {
     required double quantity,
     required String category,
     required List<File> images,
+    required VoidCallback onSuccess,
   }) async {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     try {
@@ -56,6 +61,11 @@ class AdminServices {
         onSuccess: () {
           showSnackBar(context, 'Product Added Successfully!');
           Navigator.pop(context);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            AdminScreen.routeName,
+            (route) => false,
+          );
         },
       );
     } catch (e) {

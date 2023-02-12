@@ -5,9 +5,11 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:sipps/common/widgets/custom_button.dart';
 import 'package:sipps/common/widgets/custom_textfield.dart';
+import 'package:sipps/common/widgets/loader.dart';
 import 'package:sipps/constants/global_variables.dart';
 import 'package:sipps/constants/utils.dart';
 import 'package:sipps/features/admin/services/admin_service.dart';
+import 'package:sipps/models/product.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
@@ -58,6 +60,9 @@ class _AddProductScreenState extends State<AddProductScreen> {
         quantity: double.parse(quantityController.text),
         category: category,
         images: images,
+        onSuccess: () {
+          setState(() {});
+        },
       );
     }
   }

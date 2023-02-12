@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sipps/constants/global_variables.dart';
 import 'package:sipps/features/admin/screens/products_screen.dart';
-import 'package:sipps/features/home/screens/home_screen.dart';
 
 class AdminScreen extends StatefulWidget {
+  static const String routeName = '/admin-home';
   const AdminScreen({Key? key}) : super(key: key);
 
   @override
