@@ -41,10 +41,10 @@ class _AddProductScreenState extends State<AddProductScreen> {
 
   List<String> productCategories = [
     'Elektronik',
-    'Makanan & Minuman',
-    'Komputer & Aksesoris',
-    'Handphone & Aksesoris',
-    'Buku & Alat Tulis',
+    'Makanan dan Minuman',
+    'Komputer dan Aksesoris',
+    'Handphone dan Aksesoris',
+    'Buku dan Alat Tulis',
     'Fashion',
     'Perlengkapan Rumah',
     'Tidak Dikategorikan'

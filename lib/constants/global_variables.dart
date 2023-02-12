@@ -34,19 +34,19 @@ class GlobalVariables {
       'image': 'assets/images/electronics.png',
     },
     {
-      'title': 'Makanan & Minuman',
+      'title': 'Makanan dan Minuman',
       'image': 'assets/images/food.png',
     },
     {
-      'title': 'Komputer & Aksesoris',
+      'title': 'Komputer dan Aksesoris',
       'image': 'assets/images/pc.png',
     },
     {
-      'title': 'Handphone & Aksesoris',
+      'title': 'Handphone dan Aksesoris',
       'image': 'assets/images/smartphone.png',
     },
     {
-      'title': 'Buku & Alat Tulis',
+      'title': 'Buku dan Alat Tulis',
       'image': 'assets/images/diary.png',
     },
     {
