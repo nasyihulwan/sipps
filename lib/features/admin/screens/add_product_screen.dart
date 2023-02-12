@@ -7,7 +7,7 @@ import 'package:sipps/common/widgets/custom_button.dart';
 import 'package:sipps/common/widgets/custom_textfield.dart';
 import 'package:sipps/constants/global_variables.dart';
 import 'package:sipps/constants/utils.dart';
-import 'package:sipps/features/admin/services/admin_services.dart';
+import 'package:sipps/features/admin/services/admin_service.dart';
 
 class AddProductScreen extends StatefulWidget {
   static const String routeName = '/add-product';
