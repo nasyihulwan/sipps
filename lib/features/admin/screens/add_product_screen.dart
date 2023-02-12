@@ -41,6 +41,7 @@ class _AddProductScreenState extends State<AddProductScreen> {
     'Makanan & Minuman',
     'Komputer & Aksesoris',
     'Handphone & Aksesoris',
+    'Buku & Alat Tulis',
     'Fashion',
     'Perlengkapan Rumah',
     'Lainnya'

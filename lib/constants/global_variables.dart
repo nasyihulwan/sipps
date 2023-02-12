@@ -46,6 +46,10 @@ class GlobalVariables {
       'image': 'assets/images/smartphone.png',
     },
     {
+      'title': 'Buku & Alat Tulis',
+      'image': 'assets/images/diary.png',
+    },
+    {
       'title': 'Fashion',
       'image': 'assets/images/clothes.png',
     },
