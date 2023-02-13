@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sipps/common/widgets/bottom_bar.dart';
+import 'package:sipps/features/address/screens/address_screen.dart';
 import 'package:sipps/features/admin/screens/add_product_screen.dart';
 import 'package:sipps/features/admin/screens/admin_screen.dart';
 import 'package:sipps/features/auth/screens/auth_screen.dart';
@@ -66,6 +67,15 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         settings: routeSettings,
         builder: (_) => ProductDetailScreen(
           product: product,
+        ),
+      );
+
+    case AddressScreen.routeName:
+      var totalAmount = routeSettings.arguments as String;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => AddressScreen(
+          totalAmount: totalAmount,
         ),
       );
 
