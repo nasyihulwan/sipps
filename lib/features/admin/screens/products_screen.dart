@@ -60,7 +60,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   child: Column(
                     children: [
                       SizedBox(
-                        height: 140,
+                        height: 110,
                         child: SingleProduct(
                           image: productData.images[0],
                         ),

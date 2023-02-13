@@ -30,8 +30,8 @@ class SearchedProduct extends StatelessWidget {
               Image.network(
                 product.images[0],
                 fit: BoxFit.contain,
-                height: 135,
-                width: 135,
+                height: 125,
+                width: 105,
               ),
               Column(
                 children: [
@@ -50,7 +50,7 @@ class SearchedProduct extends StatelessWidget {
                     width: 235,
                     padding: const EdgeInsets.only(left: 10, top: 5),
                     child: Stars(
-                      rating: avgRating, 
+                      rating: avgRating,
                     ),
                   ),
                   Container(
