@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sipps/constants/global_variables.dart';
+import 'package:sipps/features/admin/screens/orders_screen.dart';
 import 'package:sipps/features/admin/screens/products_screen.dart';
 
 class AdminScreen extends StatefulWidget {
@@ -20,9 +21,7 @@ class _AdminScreenState extends State<AdminScreen> {
     const Center(
       child: Text('Analisis'),
     ),
-    const Center(
-      child: Text('Pendapatan'),
-    ),
+    const OrdersScreen(),
   ];
 
   void updatePage(int page) {

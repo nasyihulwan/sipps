@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sipps/common/widgets/loader.dart';
 import 'package:sipps/constants/global_variables.dart';
+import 'package:sipps/features/account/services/account_services.dart';
 import 'package:sipps/features/account/widgets/single_product.dart';
+import 'package:sipps/features/order_details/screens/order_details.dart';
+import 'package:sipps/models/order.dart';
 
 class Orders extends StatefulWidget {
   const Orders({Key? key}) : super(key: key);
@@ -10,16 +14,8 @@ class Orders extends StatefulWidget {
 }
 
 class _OrdersState extends State<Orders> {
-  // List<Order>? orders;
-  // final AccountServices accountServices = AccountServices();
-
-  // temp list
-  List list = [
-    'https://images.unsplash.com/photo-1585060544812-6b45742d762f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
-    'https://images.unsplash.com/photo-1585060544812-6b45742d762f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
-    'https://images.unsplash.com/photo-1585060544812-6b45742d762f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
-    'https://images.unsplash.com/photo-1585060544812-6b45742d762f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjZ8fHBob25lfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=2000&q=60',
-  ];
+  List<Order>? orders;
+  final AccountServices accountServices = AccountServices();
 
   @override
   void initState() {
@@ -28,62 +24,70 @@ class _OrdersState extends State<Orders> {
   }
 
   void fetchOrders() async {
-    // orders = await accountServices.fetchMyOrders(context: context);
+    orders = await accountServices.fetchMyOrders(context: context);
     setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    // orders == null ? const Loader() :
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: const EdgeInsets.only(
-                left: 15,
+    return orders == null
+        ? const Loader()
+        : Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.only(
+                      left: 15,
+                    ),
+                    child: const Text(
+                      'Pesanan Anda',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                      right: 15,
+                    ),
+                    child: Text(
+                      'Lihat Produk Lainnya',
+                      style: TextStyle(
+                        color: GlobalVariables.selectedNavBarColor,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-              child: const Text(
-                'Beli Lagi',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w600,
+              // display orders
+              Container(
+                height: 170,
+                padding: const EdgeInsets.only(
+                  left: 10,
+                  top: 20,
+                  right: 0,
+                ),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: orders!.length,
+                  itemBuilder: (context, index) {
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(
+                            context, OrderDetailScreen.routeName,
+                            arguments: orders![index]);
+                      },
+                      child: SingleProduct(
+                        image: orders![index].products[0].images[index],
+                      ),
+                    );
+                  },
                 ),
               ),
-            ),
-            Container(
-              padding: const EdgeInsets.only(
-                right: 15,
-              ),
-              child: Text(
-                'Lihat Produk Lainnya',
-                style: TextStyle(
-                  color: GlobalVariables.selectedNavBarColor,
-                ),
-              ),
-            ),
-          ],
-        ),
-        // display orders
-        Container(
-          height: 170,
-          padding: const EdgeInsets.only(
-            left: 10,
-            top: 20,
-            right: 0,
-          ),
-          child: ListView.builder(
-            scrollDirection: Axis.horizontal,
-            itemCount: list.length,
-            itemBuilder: (context, index) {
-              return SingleProduct(
-                image: list[index],
-              );
-            },
-          ),
-        ),
-      ],
-    );
+            ],
+          );
   }
 }

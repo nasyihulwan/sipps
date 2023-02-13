@@ -5,8 +5,10 @@ import 'package:sipps/features/admin/screens/add_product_screen.dart';
 import 'package:sipps/features/admin/screens/admin_screen.dart';
 import 'package:sipps/features/auth/screens/auth_screen.dart';
 import 'package:sipps/features/home/screens/category_deals_screen.dart';
+import 'package:sipps/features/order_details/screens/order_details.dart';
 import 'package:sipps/features/product_details/screens/product_details_screen.dart';
 import 'package:sipps/features/search/screens/search_screen.dart';
+import 'package:sipps/models/order.dart';
 import 'package:sipps/models/product.dart';
 
 import 'features/home/screens/home_screen.dart';
@@ -79,6 +81,14 @@ Route<dynamic> generateRoute(RouteSettings routeSettings) {
         ),
       );
 
+    case OrderDetailScreen.routeName:
+      var order = routeSettings.arguments as Order;
+      return MaterialPageRoute(
+        settings: routeSettings,
+        builder: (_) => OrderDetailScreen(
+          order: order,
+        ),
+      );
     default:
       return MaterialPageRoute(
         settings: routeSettings,

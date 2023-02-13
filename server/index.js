@@ -22,6 +22,7 @@ app.use(productRouter);
 app.use(userRouter);
 
 // CONNECTIONS
+mongoose.set("strictQuery", false);
 mongoose
   .connect(DB)
   .then(() => {
