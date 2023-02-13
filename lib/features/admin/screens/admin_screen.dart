@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sipps/constants/global_variables.dart';
+import 'package:sipps/features/admin/screens/analytics_screen.dart';
 import 'package:sipps/features/admin/screens/orders_screen.dart';
 import 'package:sipps/features/admin/screens/products_screen.dart';
 
@@ -18,9 +19,7 @@ class _AdminScreenState extends State<AdminScreen> {
 
   List<Widget> pages = [
     const ProductsScreen(),
-    const Center(
-      child: Text('Analisis'),
-    ),
+    const AnalyticsScreen(),
     const OrdersScreen(),
   ];
 

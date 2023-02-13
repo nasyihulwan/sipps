@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:sipps/constants/error_handling.dart';
 import 'package:sipps/constants/global_variables.dart';
 import 'package:sipps/constants/utils.dart';
+import 'package:sipps/features/admin/models/sales.dart';
 import 'package:sipps/features/admin/screens/admin_screen.dart';
 import 'package:sipps/models/order.dart';
 import 'package:sipps/models/product.dart';
@@ -198,38 +199,43 @@ class AdminServices {
     }
   }
 
-  // Future<Map<String, dynamic>> getEarnings(BuildContext context) async {
-  //   final userProvider = Provider.of<UserProvider>(context, listen: false);
-  //   List<Sales> sales = [];
-  //   int totalEarning = 0;
-  //   try {
-  //     http.Response res =
-  //         await http.get(Uri.parse('$uri/admin/analytics'), headers: {
-  //       'Content-Type': 'application/json; charset=UTF-8',
-  //       'x-auth-token': userProvider.user.token,
-  //     });
+  Future<Map<String, dynamic>> getEarnings(BuildContext context) async {
+    final userProvider = Provider.of<UserProvider>(context, listen: false);
+    List<Sales> sales = [];
+    int totalEarning = 0;
+    try {
+      http.Response res =
+          await http.get(Uri.parse('$uri/admin/analytics'), headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+        'x-auth-token': userProvider.user.token,
+      });
 
-  //     httpErrorHandle(
-  //       response: res,
-  //       context: context,
-  //       onSuccess: () {
-  //         var response = jsonDecode(res.body);
-  //         totalEarning = response['totalEarnings'];
-  //         sales = [
-  //           Sales('Mobiles', response['mobileEarnings']),
-  //           Sales('Essentials', response['essentialEarnings']),
-  //           Sales('Books', response['booksEarnings']),
-  //           Sales('Appliances', response['applianceEarnings']),
-  //           Sales('Fashion', response['fashionEarnings']),
-  //         ];
-  //       },
-  //     );
-  //   } catch (e) {
-  //     showSnackBar(context, e.toString());
-  //   }
-  //   return {
-  //     'sales': sales,
-  //     'totalEarnings': totalEarning,
-  //   };
-  // }
+      httpErrorHandle(
+        response: res,
+        context: context,
+        onSuccess: () {
+          var response = jsonDecode(res.body);
+          totalEarning = response['totalEarnings'];
+          sales = [
+            Sales('Elektronik', response['elektronikEarnings']),
+            Sales('Makanan dan Minuman', response['makananDanMinumanEarnings']),
+            Sales('Komputer dan Aksesoris',
+                response['komputerDanAksesorisEarnings']),
+            Sales('Handphone dan Aksesoris',
+                response['handphoneDanAksesorisEarnings']),
+            Sales('Buku dan Alat Tulis', response['bukuDanAlatTulisEarnings']),
+            Sales('Fashion', response['fashionEarnings']),
+            Sales('Perlengkapan Rumah', response['prEarnings']),
+            Sales('Tidak Dikategorikan', response['tdEarnings']),
+          ];
+        },
+      );
+    } catch (e) {
+      showSnackBar(context, e.toString());
+    }
+    return {
+      'sales': sales,
+      'totalEarnings': totalEarning,
+    };
+  }
 }

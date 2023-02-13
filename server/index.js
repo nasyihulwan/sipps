@@ -1,15 +1,16 @@
 // IMPORT FROM PACKAGES
 const express = require("express");
 const mongoose = require("mongoose");
-const adminRouter = require("./routes/admin");
+const router = express.Router();
 
 // IMPORTS FROM OTHER FILES
+const adminRouter = require("./routes/admin");
 const authRouter = require("./routes/auth");
 const productRouter = require("./routes/product");
 const userRouter = require("./routes/user");
 
 // INIT
-const port = 3000;
+const port = process.env.port || 3000;
 const app = express();
 const DB =
   "mongodb+srv://nasyih:nasyihulwannas1103@cluster0.itotmen.mongodb.net/?retryWrites=true&w=majority";
@@ -32,6 +33,6 @@ mongoose
     console.log(e);
   });
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, () => {
   console.log("connected at port " + port);
 });

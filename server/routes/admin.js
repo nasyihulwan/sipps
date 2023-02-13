@@ -66,19 +66,33 @@ adminRouter.get("/admin/analytics", admin, async (req, res) => {
       }
     }
     // CATEGORY WISE ORDER FETCHING
-    let mobileEarnings = await fetchCategoryWiseProduct("Mobiles");
-    let essentialEarnings = await fetchCategoryWiseProduct("Essentials");
-    let applianceEarnings = await fetchCategoryWiseProduct("Appliances");
-    let booksEarnings = await fetchCategoryWiseProduct("Books");
+    let elektronikEarnings = await fetchCategoryWiseProduct("Elektronik");
+    let makananDanMinumanEarnings = await fetchCategoryWiseProduct(
+      "Makanan dan Minuman"
+    );
+    let komputerDanAksesorisEarnings = await fetchCategoryWiseProduct(
+      "Komputer dan Aksesoris"
+    );
+    let handphoneDanAksesorisEarnings = await fetchCategoryWiseProduct(
+      "Handphone dan Aksesoris"
+    );
+    let bukuDanAlatTulisEarnings = await fetchCategoryWiseProduct(
+      "Buku dan Alat Tulis"
+    );
     let fashionEarnings = await fetchCategoryWiseProduct("Fashion");
+    let prEarnings = await fetchCategoryWiseProduct("Perlengkapan Rumah");
+    let tdEarnings = await fetchCategoryWiseProduct("Tidak Dikategorikan");
 
     let earnings = {
       totalEarnings,
-      mobileEarnings,
-      essentialEarnings,
-      applianceEarnings,
-      booksEarnings,
+      elektronikEarnings,
+      makananDanMinumanEarnings,
+      komputerDanAksesorisEarnings,
+      handphoneDanAksesorisEarnings,
+      bukuDanAlatTulisEarnings,
       fashionEarnings,
+      prEarnings,
+      tdEarnings,
     };
 
     res.json(earnings);
