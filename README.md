@@ -1,6 +1,6 @@
 # SIPPS
 
-A new Flutter project.
+Flutter E-Commerce Project.
 
 ## Getting Started
 
